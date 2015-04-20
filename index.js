@@ -1,14 +1,19 @@
 var INPUT_CHANGE_ATTR = 'flChange',
 	INPUT_VALUE_ATTR = 'flValue';
 
-angular.module('ngDumb', [])
+angular.module('flDumb', [])
 	.directive(INPUT_CHANGE_ATTR, handleInputChanges)
 	.directive(INPUT_VALUE_ATTR, bindInputValue);
 
 function handleInputChanges() {
 	return function(scope, element, attrs) {
 		var expression = attrs[INPUT_CHANGE_ATTR],
-			eval = function(event) { scope.$eval(expression, { $event: event }); };
+			eval = function(event) {
+				scope.$eval(expression, {
+					$event: event,
+					$value: getEventValue(event)
+				});
+			};
 
 		switch(element.attr('type')){
 			case 'radio':
@@ -44,4 +49,9 @@ function bindInputValue() {
 			}
 		});
 	};
+}
+
+function getEventValue(event) {
+	// TODO: check target type
+	return event.target.value;
 }
