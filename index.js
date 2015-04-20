@@ -18,7 +18,8 @@ function handleInputChanges() {
 		switch(element.attr('type')){
 			case 'radio':
 				// TODO: implement me
-				break;
+				// break;
+				// falls through
 
 			case 'checkbox':
 				element.bind('change', eval);
@@ -38,7 +39,8 @@ function bindInputValue() {
 			switch(element.attr('type')){
 				case 'radio':
 					// TODO: implement me
-					break;
+					// break;
+					// falls through
 
 				case 'checkbox':
 					element[0].checked = Boolean(value);
